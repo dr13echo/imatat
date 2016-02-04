@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= @company.name %> | imaTat</title>
+
+  <%= render 'shared/global_style' %>
+  <%= render 'shared/core_js' %>
+
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="/assets/js/plugins/visualization/d3/d3.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/visualization/echarts/echarts.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/switchery.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/uniform.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/ui/moment/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/pickers/daterangepicker.js"></script>
+
+  <script type="text/javascript" src="/assets/js/core/app.js"></script>
+  <script type="text/javascript" src="/assets/js/charts/echarts/candlesticks_for_radar_filled.js"></script>
+  <!-- /theme JS files -->
+
+</head>
+
+<body>
+
+  <%= render 'shared/header_aft' %>
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <%= render 'shared/sidebar' %>
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Inside page title -->
+        <div class="panel border-top-primary">
+        </div>
+        <div class="panel border-top-primary">
+        </div>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <div class="page-header">
+          <div class="page-header-content">
+            <div class="page-title">
+              <h5>
+                <i class="icon-file-media position-left"></i> <span class="text-semibold"></span><%= @company.name %></title>
+              </h5>
+            </div>
+
+            <div class="heading-elements">
+              <ul class="breadcrumb">
+                <li><i class="icon-newspaper position-left"></i> ダッシュボード</li>
+                <li><i class="icon-store position-left"></i> 企業一覧</li><br>
+                / <li><i class="icon-file-media position-left"></i> <%= @company.name %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /inside page title -->
+
+        <!-- Content area -->
+        <div class="content">
+
+          <!-- Dashboard content -->
+          <div class="row">
+            <div class="col-lg-8">
+
+              <!-- Quick stats boxes -->
+              <div class="row">
+                <div class="col-lg-4">
+
+                  <!-- users count -->
+                  <div class="panel bg-teal-400">
+                    <div class="panel-body">
+                      <div class="heading-elements">
+                        <ul class="icons-list">
+                          <li><a data-action="reload"></a></li>
+                        </ul>
+                      </div>
+                      <h3 class="no-margin"><i class="icon-arrow-left16"></i> <span><%= @dest_commitments.count %></span></h3>
+                      受注契約数
+                    </div>
+
+                    <div class="container-fluid">
+                      <div id="members-online"></div>
+                    </div>
+                  </div>
+                  <!-- /users count-->
+
+                </div>
+
+                <div class="col-lg-4">
+
+                  <!-- Current server load -->
+                  <div class="panel bg-pink-400">
+                    <div class="panel-body">
+                      <div class="heading-elements">
+                        <ul class="icons-list">
+                          <li><a data-action="reload"></a></li>
+                        </ul>
+                      </div>
+                      <h3 class="no-margin"><i class="icon-thumbs-up2"></i> <span><%= @company.rate.present? ? @company.rate : '-' %></span></h3>
+                      総合評価
+                    </div>
+
+                    <div id="server-load"></div>
+                  </div>
+                  <!-- /current server load -->
+
+                </div>
+
+                <div class="col-lg-4">
+
+                  <!-- Today's revenue -->
+                  <div class="panel bg-blue-400">
+                    <div class="panel-body">
+                      <div class="heading-elements">
+                        <ul class="icons-list">
+                          <li><a data-action="reload"></a></li>
+                        </ul>
+                      </div>
+
+                      <h3 class="no-margin"><i class="icon-arrow-right16"></i> <span><%= @source_commitments.count %></span></h3>
+                      発注契約数
+                    </div>
+
+                    <div id="today-revenue"></div>
+                  </div>
+                  <!-- /today's revenue -->
+
+                </div>
+              </div>
+              <!-- /quick stats boxes -->
+
+              <!-- progress -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">企業紹介</h6>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  この会社の紹介です。
+                </div>
+              </div>
+              <!-- /progress -->
+
+
+              <!-- My score -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h5 class="panel-title">スコア</h5>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  <div class="chart-container">
+                    <div class="chart has-fixed-height" id="radar_filled"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- /my score -->
+
+            </div>
+
+            <div class="col-lg-4">
+
+              <!-- New comments -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">企業概要</h6>
+                </div>
+
+                <div class="panel-body">
+
+                  <form class="form-horizontal" action="#">
+
+                    <fieldset class="content-group">
+                      <div class="thumb thumb-slide">
+                        <% image = @company.image.present? ? @company.image.image.url : '/assets/images/placeholder.jpg' %>
+                        <%= link_to company_path(@company), target: '_blank' do %>
+                          <%= image_tag image %>
+                        <% end %>
+                      </div>
+
+                      <br>
+
+                      <label class="control-label col-lg-4">企業名：</label>
+                      <div class="col-lg-8">
+                        <div class="form-control-static"><%= @company.name %></div>
+                      </div>
+
+                      <label class="control-label col-lg-4">住所：</label>
+                      <div class="col-lg-8">
+                        <div class="form-control-static"><%= @company.prefecture_text + @company.address %></div>
+                      </div>
+
+                      <label class="control-label col-lg-4">TEL：</label>
+                      <div class="col-lg-8">
+                        <div class="form-control-static"><%= @company.tel %></div>
+                      </div>
+
+                      <label class="control-label col-lg-4">Email：</label>
+                      <div class="col-lg-8">
+                        <div class="form-control-static"><%= @company.email %></div>
+                      </div>
+
+                      <label class="control-label col-lg-4">従業員：</label>
+                      <div class="col-lg-8">
+                        <div class="form-control-static"><%= @company.member_count %>人</div>
+                      </div>
+
+                      <label class="control-label col-lg-4">日産：</label>
+                      <div class="col-lg-8">
+                        <div class="form-control-static"><%= @company.make_count %>枚</div>
+                      </div>
+
+                      <label class="control-label col-lg-4">忙しさ：</label>
+                      <div class="col-lg-8">
+                        <div class="form-control-static"><%= @company.busyness_text %></div>
+                      </div>
+                    </fieldset>
+
+                  </form>
+                </div>
+              </div>
+              <!-- /new comments -->
+
+            </div>
+
+            <div class="col-lg-12">
+              <!-- Latest posts -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">この企業へのレビュー</h6>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  <% @reviews.each do |review| %>
+                  <% reviewer = Company.where(id: review.source_company_id).first %>
+                  <div class="media stack-media-on-mobile">
+                    <div class="media-left">
+                      <div class="thumb">
+                        <% image = '/assets/images/placeholder.jpg' %>
+                        <%= link_to company_path(), target: '_blank' do %>
+                          <%= image_tag image %>
+                        <% end %>
+                      </div>
+                    </div>
+
+                    <div class="media-body">
+                      <h6 class="media-heading"><%= review.commitment.project.name %></h6>
+                      <ul class="list-inline list-inline-separate text-muted mb-5">
+                        <li><i class=" icon-user-tie position-left"></i> <%= reviewer.name %></li>
+                        <li><%= review.created_at %></li><br>
+                        <li>対応の丁寧さ：<%= review.score1.present? ? review.score1 : '-' %></li>
+                        <li>契約までの速さ：<%= review.score1.present? ? review.score2 : '-' %></li>
+                        <li>仕上がりの丁寧さ：<%= review.score1.present? ? review.score3 : '-' %></li>
+                        <li>納品までの早さ：<%= review.score1.present? ? review.score4 : '-' %></li>
+                        <li>価格：<%= review.score1.present? ? review.score5 : '-' %></li>
+                      </ul>
+                      <%= review.body %>
+                    </div>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- /latest posts -->
+            </div>
+          </div>
+          <!-- /dashboard content -->
+
+          <!-- Horizontal form modal -->
+          <div id="modal_form_horizontal" class="modal fade">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h5 class="modal-title">アカウント編集</h5>
+                </div>
+
+                <form action="#" class="form-horizontal">
+                  <div class="modal-body">
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <label>登録Eメール：</label>
+                        <input type="text" class="form-control" value="imatat@tatami.jp">
+                      </div>
+
+                      <div class="form-group">
+                        <label>企業名：</label>
+                        <input type="text" class="form-control" value="(株)イマタット畳店">
+                      </div>
+
+                      <div class="form-group">
+                        <label>郵便番号：</label>
+                        <input type="text" class="form-control" value="123-1234">
+                      </div>
+
+                      <div class="form-group">
+                        <label>住所：</label>
+                        <input type="text" class="form-control" value="東京都日野市南平1-1">
+                      </div>
+
+                      <div class="form-group">
+                        <label class="display-block">都道府県:</label>
+                        <select data-placeholder="東京" class="select-fixed" value="東京都">
+                          <option></option>
+                            <option value="AK">北海道</option>
+                            <option value="HI">青森</option>
+                            <option value="CA">秋田</option>
+                            <option value="NV">岩手</option>
+                            <option value="WA">東京</option>
+                            <option value="AZ">千葉</option>
+                          </optgroup>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label>日産(枚)：</label>
+                        <input type="text" class="form-control" value="6">
+                      </div>
+
+                      <div class="form-group">
+                        <label>従業員数(人)：</label>
+                        <input type="text" class="form-control" value="2">
+                      </div>
+
+                      <div class="form-group">
+                        <label>電話番号：</label>
+                        <input type="text" class="form-control" value="012-345-6789">
+                      </div>
+
+                      <div class="form-group">
+                        <label>パスワード：</label>
+                        <input type="password" class="form-control" value="">
+                      </div>
+
+                      <div class="form-group">
+                        <label>パスワード再入力：</label>
+                        <input type="password" class="form-control" value="">
+                      </div>
+
+                      <div class="form-group">
+                        <label>プロフィール画像：</label>
+                        <input type="file" class="file-styled">
+                      </div>
+
+                      <div class="form-group">
+                        <label>企業紹介:</label>
+                        <textarea rows="5" cols="5" class="form-control" value="企業紹介"></textarea>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="display-block">忙しさ:</label>
+                        <select data-placeholder="忙しい" class="select-fixed" value="忙しい">
+                          <option></option>
+                            <option value="highest">とても忙しい</option>
+                            <option value="high">忙しい</option>
+                            <option value="normal">普通</option>
+                            <option value="low">あまり忙しくない</option>
+                            <option value="lowest">忙しくない</option>
+                          </optgroup>
+                        </select>
+                      </div>
+
+                      <div class="checkbox checkbox-switchery">
+                        <label>
+                          <input type="checkbox" class="switchery">
+                          非公開設定
+                          <span class="help-block">onにすると企業一覧に表示されなくなります</span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit form</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <!-- /horizontal form modal -->
+
+          <%= render 'shared/footer' %>
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+  </div>
+  <!-- /page container -->
+
+</body>
+</html>

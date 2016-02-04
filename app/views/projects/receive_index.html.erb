@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>依頼された案件 | imaTat</title>
+
+  <%= render 'shared/global_style' %>
+  <%= render 'shared/core_js' %>
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="assets/js/core/app.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+  <%= render 'shared/header_aft' %>
+
+	<!-- Page container -->
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+      <%= render 'shared/sidebar' %>
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Inside page title -->
+				<div class="panel border-top-primary">
+				</div>
+				<div class="panel border-top-primary">
+				</div>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+				<div class="page-header">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h5>
+								<i class="icon-arrow-left16 position-left"></i> <span class="text-semibold">imaTat</span> - 依頼された案件
+								<small class="display-block">あなたが依頼された案件です。詳細ページから受注申請してみましょう。</small>
+							</h5>
+						</div>
+
+						<div class="heading-elements">
+							<ul class="breadcrumb">
+								<li><a href="index.html"><i class="icon-newspaper position-left"></i> ダッシュボード</a></li>
+								<li><i class="icon-arrow-left16 position-left"></i> 依頼された案件</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /inside page title -->
+
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Search field -->
+					<div class="panel panel-flat">
+						<div class="panel-heading">
+							<h5 class="panel-title">検索</h5>
+							<div class="heading-elements">
+								<ul class="icons-list">
+									<li><a data-action="collapse"></a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="panel-body">
+							<form action="#" class="main-search">
+								<div class="input-group content-group">
+									<div class="has-feedback has-feedback-left">
+										<input type="text" class="form-control input-xlg" placeholder="案件名、企業名で検索できます">
+										<div class="form-control-feedback">
+											<i class="icon-search4 text-muted text-size-base"></i>
+										</div>
+									</div>
+
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-primary btn-xlg">検索</button>
+									</div>
+								</div>
+
+								<div class="row search-option-buttons">
+
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- /search field -->
+
+					<!-- Search results -->
+					<div class="content-group">
+            <p class="text-muted text-size-small content-group">About <%= @projects.count %> results</p>
+
+						<div class="search-results-list content-group">
+
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<h5 class="panel-title">検索結果</h5>
+								<div class="heading-elements">
+									<ul class="icons-list">
+										<li><a data-action="reload"></a></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr class="bg-info">
+                      <th style="width: 130px;">ステータス</th>
+                      <th>案件名</th>
+                      <th style="width: 140px;">依頼元</th>
+                      <th style="width: 90px;">納期</th>
+                      <th style="width: 250px;">契約進捗</th>
+                      <th style="width: 140px;"></th>
+									</thead>
+									<tbody>
+                    <% @projects.each do |project| %>
+										<tr>
+											<td><%= project_company_status(project) %></td>
+                      <td><%= project.name %></td>
+                      <td><%= link_to "#{project.source_company_name}", company_path(Company.where(id: project.source_company_id).first) %></td>
+                      <td><%= project.deadline %></td>
+											<td>
+												<div class="progress">
+													<div class="progress-bar bg-info" style="width: <%= project_progress_bar(project) %>%">
+														<span><%= project_progress_bar(project) %></span>
+													</div>
+												</div>
+												</div>
+											</td>
+											<td>
+                        <%= link_to '詳細', project_path(project), {class: 'btn btn-info btn-xs'} %>
+                        <%= link_to '契約', commitments_path, {class: 'btn btn-info btn-xs'} %>
+											</td>
+										</tr>
+                    <% end %>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						</div>
+					</div>
+					<!-- /search results -->
+
+		      <!-- Vertical form modal -->
+					<div id="modal_form_vertical" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h5 class="modal-title">詳細検索</h5>
+								</div>
+
+								<form action="#">
+									<div class="modal-footer">
+										<button type="button" class="btn btn-link" data-dismiss="modal">閉じる</button>
+										<button type="submit" class="btn btn-primary">検索</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- /vertical form modal -->
+
+          <%= render 'shared/footer' %>
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+</body>
+</html>

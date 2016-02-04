@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>会員登録 | imaTat</title>
+
+  <%= render 'shared/global_style' %>
+  <%= render 'shared/core_js' %>
+
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="/assets/js/plugins/forms/selects/select2.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/uniform.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/switchery.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/switch.min.js"></script>
+
+  <script type="text/javascript" src="/assets/js/core/app.js"></script>
+  <script type="text/javascript" src="/assets/js/pages/login.js"></script>
+  <script type="text/javascript" src="/assets/js/pages/form_layouts.js"></script>
+  <script type="text/javascript" src="/assets/js/pages/form_checkboxes_radios.js"></script>
+  <!-- /theme JS files -->
+
+</head>
+
+<body>
+
+  <!-- Main navbar -->
+  <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html">imaTat</a>
+    </div>
+  </div>
+  <!-- /main navbar -->
+
+
+  <!-- Page container -->
+  <div class="page-container login-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Content area -->
+        <div class="panel border-top-primary">
+        </div>
+        <div class="panel border-top-primary">
+        </div>
+
+        <div class="content">
+
+          <!-- Registration form -->
+
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+
+          <form action="index/html">
+            <div class="row">
+              <div class="col-lg-6 col-lg-offset-3">
+                <div class="panel registration-form">
+                  <div class="panel-body">
+                    <div class="text-center">
+                      <div class="icon-object border-success text-success"><i class="icon-plus3"></i></div>
+                      <h5 class="content-group-lg">会員登録
+                        <small class="display-block">登録後も「アカウント編集」からいつでも変更可能です
+                        </small>
+                      </h5>
+                    </div>
+
+                    <div class="panel-body">
+                      <div class="form-group">
+                        <%= f.label :email %><br/>
+                        <%= f.email_field :email, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :name %><br/>
+                        <%= f.text_field :name, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :zip %><br/>
+                        <%= f.text_field :zip, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :address %><br/>
+                        <%= f.text_field :address, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :prefecture %><br/>
+                        <%= f.select :prefecture, Company.prefecture.options, { include_blank: false }, { class: 'form-control' } %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :make_count %><br/>
+                        <%= f.text_field :make_count, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :member_count %><br/>
+                        <%= f.text_field :member_count, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :tel %><br/>
+                        <%= f.text_field :tel, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :password %>
+                        <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :password_confirmation %><br />
+                        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "off" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :image %><br>
+                        <%= f.file_field :image, class: 'file-styled' %>
+                        <%= f.hidden_field :image_cache %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :body %><br/>
+                        <%= f.text_area :body, class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :busyness %><br/>
+                        <%= f.select :busyness, Company.busyness.options, { include_blank: false }, { class: 'form-control' } %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.label :status %><br/>
+                        <%= f.select :status, Company.status.options, { include_blank: false }, { class: 'form-control' } %>
+                      </div>
+
+                      <div class="text-right">
+                        <%= f.submit "imaTatを使う", class: 'btn btn-primary' %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <% end %>
+          <!-- /registration form -->
+
+          <%= render 'shared/footer' %>
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+  </div>
+  <!-- /page container -->
+
+</body>
+</html>

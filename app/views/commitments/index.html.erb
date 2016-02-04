@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>契約一覧 | imaTat</title>
+
+  <%= render 'shared/global_style' %>
+  <%= render 'shared/core_js' %>
+
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="/assets/js/core/libraries/jquery_ui/interactions.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/uniform.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/switchery.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/my_switchery.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/selects/select2.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/selects/selectboxit.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/inputs/touchspin.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/uploaders/fileinput.min.js"></script> -->
+  <script type="text/javascript" src="/assets/js/plugins/forms/editable/editable.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/extensions/contextmenu.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/visualization/sparkline.min.js"></script> -->
+  <script type="text/javascript" src="/assets/js/core/app.js"></script>
+  <!-- table_elements.jsにより呼ばれるisDisabled()でnullによるエラーが発生 -->
+  <!-- // <script type="text/javascript" src="assets/js/pages/table_elements.js"></script> -->
+
+  <!-- /theme JS files -->
+
+</head>
+
+<body>
+
+  <%= render 'shared/header_aft' %>
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <%= render 'shared/sidebar' %>
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Inside page title -->
+        <div class="panel border-top-primary">
+        </div>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <div class="page-header">
+          <div class="page-header-content">
+            <div class="page-title">
+              <h5>
+                <i class="icon-checkmark position-left"></i> <span class="text-semibold">imaTat</span> - 契約
+                <small class="display-block">あなたが交わした契約の一覧です。仕事が完了したらステータスを更新して依頼元に知らせましょう。<br>
+                また、依頼先の仕事に対してレビューを書いてみましょう。
+                </small>
+              </h5>
+            </div>
+
+            <div class="heading-elements">
+              <ul class="breadcrumb">
+                <li><a href="index.html"><i class="icon-newspaper position-left"></i> ダッシュボード</a></li>
+                <li><i class="icon-checkmark position-left"></i> 依頼した案件</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /inside page title -->
+
+
+        <!-- Content area -->
+        <div class="content">
+
+          <!-- Table header styling -->
+          <div class="panel panel-flat">
+            <div class="panel-heading">
+              <h5 class="panel-title">あなたが受注した契約</h5>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              あなたの受注契約です。仕事が終了したらステータスを「完了」にして、依頼元企業に知らせましょう。
+            </div>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr class="bg-teal">
+                    <th style="width: 50px;">ID</th>
+                    <th style="width: 150px;">案件名</th>
+                    <th>契約内容</th>
+                    <th style="width: 80px;">納期</th>
+                    <th style="width: 150px;">依頼元企業</th>
+                    <th style="width: 120px;">ステータス</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @dest_commitments.each do |commitment| %>
+                  <tr>
+                    <td><%= commitment.id %> </td>
+                    <td><%= commitment.project.name %></td>
+                    <td><%= commitment.body %></td>
+                    <td><%= commitment.project.deadline %></td>
+                    <td><%= Company.where(id: commitment.source_company_id).first.name %></td>
+                    <% if commitment.status == 'progress' %>
+                      <td><%= link_to "　完了　", commitment, method: :put, class: "btn bg-teal" %></td>
+                    <% elsif commitment.status == 'done' %>
+                      <td><button type="button" class="btn bg-teal disabled">報告済み</button></td>
+                    <% else %>
+                      <td></td>
+                    <% end %>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /table header styling -->
+
+          <!-- Table header styling -->
+          <div class="panel panel-flat">
+            <div class="panel-heading">
+              <h5 class="panel-title">あなたが発注した契約</h5>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                  <li><a data-action="reload"></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              あなたの発注契約です。完了した契約については、畳が届いたら品質検査をしてレビューを書きましょう。
+            </div>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr class="bg-indigo">
+                    <th style="width: 50px;">ID</th>
+                    <th style="width: 150px;">案件名</th>
+                    <th>契約内容</th>
+                    <th style="width: 80px;">納期</th>
+                    <th style="width: 150px;">依頼先企業</th>
+                    <th style="width: 180px;">ステータス</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <% @source_commitments.each do |commitment| %>
+                  <tr>
+                    <td><%= commitment.id %> </td>
+                    <td><%= commitment.project.name %></td>
+                    <td><%= commitment.body %></td>
+                    <td><%= commitment.project.deadline %></td>
+                    <td><%= Company.where(id: commitment.dest_company_id).first.name %></td>
+                    <%= source_commitment_status(commitment, commitment.status) %>
+                  </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /table header styling -->
+
+          <!-- Horizontal form modal -->
+          <div id="new_review_form" class="modal fade">
+            <div class="modal-dialog modal-sm">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h5 class="modal-title">レビュー</h5>
+                </div>
+
+                <%= form_for @review, html: {:class => 'new_review_form'} do |f| %>
+
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <fieldset>
+                          <div class="form-group">
+                            <%= f.label '対応の丁寧さ：', class: 'control-label' %><br>
+                            <%= f.select :score1, { 'とても満足' => 5, '満足' => 4, '普通' => 3, '不満' => 2, 'とても不満' => 1 }, class: 'form-control select' %>
+                          </div>
+
+                          <div class="form-group">
+                            <%= f.label '契約までの速さ：', class: 'control-label' %><br>
+                            <%= f.select :score2, { 'とても満足' => 5, '満足' => 4, '普通' => 3, '不満' => 2, 'とても不満' => 1 }, class: 'form-control select' %>
+                          </div>
+
+                          <div class="form-group">
+                            <%= f.label '仕上がりの丁寧さ：', class: 'control-label' %><br>
+                            <%= f.select :score3, { 'とても満足' => 5, '満足' => 4, '普通' => 3, '不満' => 2, 'とても不満' => 1 }, class: 'form-control select' %>
+                          </div>
+
+                          <div class="form-group">
+                            <%= f.label '納品までの早さ：', class: 'control-label' %><br>
+                            <%= f.select :score4, { 'とても満足' => 5, '満足' => 4, '普通' => 3, '不満' => 2, 'とても不満' => 1 }, class: 'form-control select' %>
+                          </div>
+
+                          <div class="form-group">
+                            <%= f.label '価格：', class: 'control-label' %><br>
+                            <%= f.select :score5, { 'とても満足' => 5, '満足' => 4, '普通' => 3, '不満' => 2, 'とても不満' => 1 }, class: 'form-control select' %>
+                          </div>
+                        </fieldset>
+                      </div>
+
+                      <div class="col-md-6">
+                        <fieldset>
+                          <div class="form-group">
+                            <%= f.label '契約ID：', class: 'control-label' %><br>
+                            <%= f.text_field :commitment_id, class: 'form-control' %>
+                          </div>
+
+                          <div class="form-group">
+                            <%= f.label '本文：', class: 'control-label' %><br>
+                            <%= f.text_area :body, class: 'form-control', :rows => "10", :cols => "5" %>
+                          </div>
+                        </fieldset>
+                      </div>
+                    </div>
+
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-link" data-dismiss="modal">閉じる</button>
+                      <button type="submit" class="btn btn-primary">保存する</button>
+                    </div>
+                  </div>
+
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- /horizontal form modal -->
+
+          <%= render 'shared/footer' %>
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+  </div>
+  <!-- /page container -->
+</body>
+</html>

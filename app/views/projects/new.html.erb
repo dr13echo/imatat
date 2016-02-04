@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>案件作成 | imaTat</title>
+
+  <%= render 'shared/global_style' %>
+  <%= render 'shared/core_js' %>
+
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="/assets/js/plugins/forms/selects/select2.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/uniform.min.js"></script>
+
+  <script type="text/javascript" src="/assets/js/core/app.js"></script>
+  <script type="text/javascript" src="/assets/js/pages/form_layouts.js"></script>
+
+  <!-- /theme JS files -->
+</head>
+
+<body>
+
+  <%= render 'shared/header_aft' %>
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <%= render 'shared/sidebar' %>
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Inside page title -->
+        <div class="panel border-top-primary">
+        </div>
+        <div class="panel border-top-primary">
+        </div>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <div class="page-header">
+          <div class="page-header-content">
+            <div class="page-title">
+              <h5>
+                <i class="icon-pencil6 position-left"></i> <span class="text-semibold">imaTat</span> - 案件作成
+                <small class="display-block">新しい案件を作成しましょう。</small>
+              </h5>
+            </div>
+
+            <div class="heading-elements">
+              <ul class="breadcrumb">
+                <li><a href="index.html"><i class="icon-newspaper position-left"></i> ダッシュボード</a></li>
+                <li><i class="icon-pencil6 position-left"></i> 案件作成</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /inside page title -->
+
+
+        <!-- Content area -->
+        <div class="content">
+
+          <!-- 2 columns form -->
+          <%= form_for @project, html: { :class => 'new_project_form'} do |f| %>
+
+            <div class="panel panel-flat">
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-6">
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">依頼元企業:</label>
+                        <div class="col-lg-9">
+                          <% if company_signed_in? %>
+                            <input type="text" class="form-control" placeholder="<%= current_company.name %>" disabled="true">
+                            <% f.text_field :source_company_id, class: 'form-control', value: "#{@current_company.id}" %>
+                          <% else %>
+                            <input type="text" class="form-control" placeholder="<%= Company.first.name %>" disabled="true"></input>
+                            <% f.text_field :source_company_id, class: 'form-control', value: "#{Company.first.id}" %>
+                          <% end %>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">依頼先企業:</label>
+                        <%= f.select :dest_company_id, @dest_companies.all.map { |c| [c.name, c.id] }, { include_blank: true }, { class: 'searchable' } %>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">ステータス:</label>
+                        <%= f.select :status, {'公開' => 'public', '非公開' => 'private'}, class: 'select' %>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">案件名:</label>
+                        <div class="col-lg-9">
+                          <%= f.text_field :name, class: 'form-control' %>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">案件詳細:</label>
+                        <div class="col-lg-9">
+                          <%= f.text_area :body, rows: '10', cols: '5', class: 'form-control' %>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+
+                  <div class="col-md-6">
+                    <fieldset>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">畳表:</label>
+                        <div class="col-lg-9">
+                          <%= f.text_field :kind_body, class: 'form-control' %>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">畳縁:</label>
+                        <div class="col-lg-9">
+                          <%= f.text_field :kind_edge, class: 'form-control' %>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">必要数量(畳):</label>
+                        <div class="col-lg-9">
+                          <%= f.text_field :need_amount, class: 'form-control' %>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">見積額(円/1畳):</label>
+                        <div class="col-lg-9">
+                          <%= f.text_field :estimated_sum, class: 'form-control' %>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">納期:</label>
+                        <div class="col-lg-9">
+                          <%= f.text_field :deadline, class: 'form-control daterange-single', value: "#{Date.today}" %>
+                        </div>
+                      </div>
+                      <br><br>
+                      <div class="form-group">
+                        <label class="col-lg-3 control-label">備考:</label>
+                        <div class="col-lg-9">
+                          <%= f.text_area :note, rows: '10', cols: '5', class: 'form-control' %>
+                        </div>
+                      </div>
+                    </fieldset>
+                  </div>
+                </div>
+
+                <div class="text-right">
+                  <button type="submit" class="btn btn-primary">作成 <i class="icon-arrow-right14 position-right"></i></button>
+                </div>
+              </div>
+            </div>
+
+          <% end %>
+          <!-- /2 columns form -->
+
+
+          <%= render 'shared/footer' %>
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+  </div>
+  <!-- /page container -->
+
+</body>
+</html>

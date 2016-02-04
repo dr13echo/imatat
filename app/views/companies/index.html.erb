@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>企業一覧 | imaTat</title>
+
+  <%= render 'shared/global_style' %>
+  <%= render 'shared/core_js' %>
+
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="/assets/js/core/app.js"></script>
+  <!-- /theme JS files -->
+
+</head>
+
+<body>
+
+  <%= render 'shared/header_aft' %>
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <%= render 'shared/sidebar' %>
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Inside page title -->
+        <div class="panel border-top-primary">
+        </div>
+        <div class="panel border-top-primary">
+        </div>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <div class="page-header">
+          <div class="page-header-content">
+            <div class="page-title">
+              <h5>
+                <i class="icon-store position-left"></i> 企業一覧
+              </h5>
+            </div>
+
+            <div class="heading-elements">
+              <ul class="breadcrumb">
+                <li><i class="icon-newspaper position-left"></i> ダッシュボード</li>
+                <li><i class="icon-store position-left"></i> 企業一覧</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /inside page title -->
+
+
+        <!-- Content area -->
+        <div class="content">
+
+          <!-- Search field -->
+          <div class="panel panel-flat">
+            <div class="panel-heading">
+              <h5 class="panel-title">検索</h5>
+              <div class="heading-elements">
+                <ul class="icons-list">
+                  <li><a data-action="collapse"></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="panel-body">
+              <%= search_form_for @q do |f| %>
+              <form action="#" class="main-search">
+                <div class="input-group content-group">
+                  <div class="has-feedback has-feedback-left">
+                    <%= f.search_field :name_cont, class: 'form-control input-xlg', placeholder: '企業名で検索できます'%>
+                    <div class="form-control-feedback">
+                      <i class="icon-search4 text-muted text-size-base"></i>
+                    </div>
+                  </div>
+
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-primary btn-xlg">検索</button>
+                  </div>
+                </div>
+              </form>
+              <% end %>
+            </div>
+          </div>
+          <!-- /search field -->
+
+          <!-- Search results -->
+          <div class="content-group">
+            <p class="text-muted text-size-small content-group">About <%= @companies.count %> results</p>
+
+            <div class="search-results-list content-group">
+
+            <div class="panel panel-flat">
+              <div class="panel-heading">
+                <h5 class="panel-title">検索結果</h5>
+                <div class="heading-elements">
+                  <ul class="icons-list">
+                    <li><a data-action="reload"></a></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr class="bg-info">
+                      <th style="width: 100px;">都道府県</th>
+                      <th>企業名</th>
+                      <th style="width: 90px;"><a href="#" class="bg-info">評価<i class="icon-menu-open"></i></a></th>
+                      <th style="width: 90px;"><a href="#" class="bg-info">日産<i class="icon-menu-open"></i></a></th>
+                      <th style="width: 150px;">忙しさ</th>
+                      <th style="width: 140px;"></th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                  <% @companies.each do |company| %>
+                    <tr>
+                      <td><%= company.prefecture_text %> </td>
+                      <td><%= company.name %></td>
+                      <td><%= company.rate %></td>
+                      <td><%= company.make_count %></td>
+                      <td><%= company.busyness_text %></td>
+                      <td>
+                        <%= link_to '詳細', company_path(company), {class: 'btn btn-info btn-xs'} %>
+                        <%= link_to '依頼', new_project_path, {class: 'btn btn-info btn-xs'} %>
+                      </td>
+                    </tr>
+                  <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            </div>
+          </div>
+          <!-- /search results -->
+
+        <%= render 'shared/footer' %>
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+  </div>
+  <!-- /page container -->
+
+</body>
+</html>

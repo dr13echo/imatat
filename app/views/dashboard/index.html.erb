@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ダッシュボード | imaTat</title>
+
+  <%= render 'shared/global_style' %>
+  <%= render 'shared/core_js' %>
+
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="/assets/js/plugins/visualization/d3/d3.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/visualization/echarts/echarts.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/switchery.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/uniform.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/ui/moment/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/pickers/daterangepicker.js"></script>
+
+  <script type="text/javascript" src="/assets/js/core/app.js"></script>
+  <script type="text/javascript" src="/assets/js/charts/echarts/candlesticks_for_radar_filled.js"></script>
+  <!-- /theme JS files -->
+</head>
+
+<body>
+
+  <%= render 'shared/header_aft' %>
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <%= render 'shared/sidebar' %>
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Inside page title -->
+        <div class="panel border-top-primary">
+        </div>
+        <div class="panel border-top-primary">
+        </div>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <div class="page-header">
+          <div class="page-header-content">
+            <div class="page-title">
+              <h5>
+                <i class="icon-newspaper position-left"></i> <span class="text-semibold">imaTat</span> - ダッシュボード
+                <small class="display-block">あなたのダッシュボードです。案件の契約進捗はいかがでしょうか？</small>
+              </h5>
+            </div>
+
+            <div class="heading-elements">
+              <ul class="breadcrumb">
+                <li><i class="icon-newspaper position-left"></i> ダッシュボード</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /inside page title -->
+
+        <!-- Content area -->
+        <div class="content">
+
+          <!-- Dashboard content -->
+          <div class="row">
+            <div class="col-lg-8">
+
+              <!-- Quick stats boxes -->
+              <div class="row">
+                <div class="col-lg-4">
+
+                  <!-- users count -->
+                  <div class="panel bg-teal-400">
+                    <div class="panel-body">
+                      <div class="heading-elements">
+                        <ul class="icons-list">
+                          <li><a data-action="reload"></a></li>
+                        </ul>
+                      </div>
+                      <h3 class="no-margin"><i class="icon-users4"></i> <span><%= Company.where(status: 'public').count %></span></h3>
+                      社が登録しています
+                    </div>
+
+                    <div class="container-fluid">
+                      <div id="members-online"></div>
+                    </div>
+                  </div>
+                  <!-- /users count-->
+
+                </div>
+
+                <div class="col-lg-4">
+
+                  <!-- Current server load -->
+                  <div class="panel bg-pink-400">
+                    <div class="panel-body">
+                      <div class="heading-elements">
+                        <ul class="icons-list">
+                          <li><a data-action="reload"></a></li>
+                        </ul>
+                      </div>
+                      <h3 class="no-margin"><i class="icon-map4"></i> <span><%= Project.where(status: 'public').count %></span></h3>
+                      案件が依頼されました
+                    </div>
+
+                    <div id="server-load"></div>
+                  </div>
+                  <!-- /current server load -->
+
+                </div>
+
+                <div class="col-lg-4">
+
+                  <!-- Today's revenue -->
+                  <div class="panel bg-blue-400">
+                    <div class="panel-body">
+                      <div class="heading-elements">
+                        <ul class="icons-list">
+                          <li><a data-action="reload"></a></li>
+                        </ul>
+                      </div>
+
+                      <h3 class="no-margin"><i class="icon-checkmark4"></i> <span><%= Commitment.count %></span></h3>
+                      回の契約が交わされました
+                    </div>
+
+                    <div id="today-revenue"></div>
+                  </div>
+                  <!-- /today's revenue -->
+
+                </div>
+              </div>
+              <!-- /quick stats boxes -->
+
+              <!-- My score -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h5 class="panel-title">自社のスコア</h5>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  <div class="chart-container">
+                    <div class="chart has-fixed-height" id="radar_filled"></div>
+                  </div>
+                </div>
+              </div>
+              <!-- /my score -->
+
+              <!-- progress -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">契約の進行状況</h6>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  <div class="row">
+                    <ul class="progress-list">
+                      <% @source_projects.each do |project| %>
+                      <li>
+                        <% num = 0 %>
+                        <% project.commitments.each do |com| %>
+                          <% num += com.amount %>
+                        <% end %>
+
+                        <% if num == 0 %>
+                          <% per = '未契約' %>
+                          <label><%= link_to project.name, project_path(project) %><span><%= per %></span></label>
+                          <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: 0%">
+                              <span class="sr-only">未契約</span>
+                            </div>
+                          </div>
+                        <% else %>
+                          <% per = num * 100 / project.need_amount %>
+                          <label><%= link_to project.name, project_path(project) %><span><%= per.round %></span></label>
+                          <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" style="width: <%= per.round %>%">
+                              <span class="sr-only"><%= per.round %>% Complete</span>
+                            </div>
+                          </div>
+                        <% end %>
+                      </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <!-- /progress -->
+
+              <!-- Latest posts -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">新しい案件</h6>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  <% @dest_projects.each do |project| %>
+                  <div class="media stack-media-on-mobile">
+                    <div class="media-left">
+                      <div class="thumb">
+                        <a href="#">
+                          <img src="assets/images/placeholder.jpg" class="img-responsive img-rounded media-preview" alt="">
+                        </a>
+                      </div>
+                    </div>
+
+                    <div class="media-body">
+                      <h6 class="media-heading"><%= link_to project.name, project_path(project) %></h6>
+                      <ul class="list-inline list-inline-separate text-muted mb-5">
+                        <li><i class=" icon-user-tie position-left"></i> <%= project.source_company_name %></li>
+                        <li><%= project.created_at.strftime("%Y.%m.%d") %></li>
+                      </ul>
+                      <%= project.body %>
+                    </div>
+                  </div>
+                  <% end %>
+                </div>
+              </div>
+              <!-- /latest posts -->
+
+            </div>
+
+            <div class="col-lg-4">
+
+              <!-- New review -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">新着レビュー</h6>
+                  <div class="heading-elements">
+                    <span class="heading-text"><i class="icon-history text-warning position-left"></i> <%= Date.today.strftime("%Y.%m.%d") %></span>
+                  </div>
+                </div>
+
+                <!-- Area chart -->
+                <div id="messages-stats"></div>
+                <!-- /area chart -->
+
+                <!-- Tabs content -->
+                <div class="tab-content">
+                  <div class="tab-pane active fade in has-padding" id="messages-tue">
+                    <ul class="media-list">
+                      <% @reviews.each do |review| %>
+                      <li class="media">
+                        <div class="media-left">
+                          <img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+                          <span class="badge bg-danger-400 media-badge"><%= review_rate(review) %></span>
+                        </div>
+
+                        <div class="media-body">
+                          <a href="#">
+                            <%= Company.where(id: review.source_company_id).first.name %>
+                            <span class="media-annotation pull-right"><%= review.created_at.strftime("%Y.%m.%d") %></span>
+                          </a>
+
+                          <span class="display-block text-muted"><%= review.body %></span>
+                        </div>
+                      </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+                <!-- /tabs content -->
+
+              </div>
+              <!-- /new review -->
+
+            </div>
+          </div>
+          <!-- /dashboard content -->
+
+        <%= render 'shared/footer' %>
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+  </div>
+  <!-- /page container -->
+
+</body>
+</html>

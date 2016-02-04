@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>案件名 | imaTat</title>
+
+  <%= render 'shared/global_style' %>
+  <%= render 'shared/core_js' %>
+
+  <!-- Theme JS files -->
+  <script type="text/javascript" src="/assets/js/core/libraries/jquery_ui/datepicker.min.js"></script>
+  <script type="text/javascript" src="/assets/js/plugins/forms/styling/switchery.min.js"></script>
+
+  <script type="text/javascript" src="/assets/js/core/app.js"></script>
+  <script type="text/javascript" src="/assets/js/pages/task_detailed.js"></script>
+  <!-- /theme JS files -->
+
+</head>
+
+<body class="sidebar-xs">
+
+  <%= render 'shared/header_aft' %>
+
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <%= render 'shared/sidebar' %>
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Inside page title -->
+        <div class="panel border-top-primary">
+        </div>
+        <div class="panel border-top-primary">
+        </div>
+
+        <% if notice %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <% if alert %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
+
+        <div class="page-header">
+          <div class="page-header-content">
+            <div class="page-title">
+              <h5>
+                <i class="icon-hammer-wrench position-left"></i> <%= @project.name %>
+              </h5>
+            </div>
+
+            <div class="heading-elements">
+              <ul class="breadcrumb">
+                <li><i class="icon-newspaper position-left"></i> ダッシュボード</li>
+                <li><i class="icon-arrow-right16 position-left"></i> 依頼した案件</li>
+                <br>
+                <li> / <i class="icon-hammer-wrench position-left"></i> 案件名</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- /inside page title -->
+
+
+        <!-- Content area -->
+        <div class="content">
+
+          <!-- Detailed task -->
+          <div class="row">
+            <div class="col-lg-3">
+
+              <!-- 依頼元企業 -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title"><i class="icon-notification2 position-left"></i>依頼元企業</h6>
+                </div>
+
+                <div class="panel-body">
+                  <ul class="media-list">
+                    <li class="media">
+                      <div class="media-left">
+                        <a href="#">
+                          <img src="/assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+                        </a>
+                      </div>
+
+                      <div class="media-body media-middle text-semibold">
+                        <%= link_to "#{@source_company.name}", company_path(@source_company) %>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /依頼元企業 -->
+
+              <!-- 交渉中 -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title"><i class="icon-users4 position-left"></i>交渉中</h6>
+                  <div class="heading-elements">
+                    <ul class="icons-list">
+                      <li><a data-action="collapse"></a></li>
+                      <li><a data-action="reload"></a></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="panel-body">
+                  <ul class="media-list">
+                    <% @neg_companies.each do |company| %>
+                    <li class="media">
+                      <div class="media-left">
+                        <a href="#">
+                          <img src="/assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+                        </a>
+                      </div>
+
+                      <div class="media-body media-middle text-semibold">
+                        <%= link_to "#{company.name}", company_path(company) %>
+                      </div>
+                    </li>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+              <!-- /交渉中 -->
+            </div>
+
+            <div class="col-lg-9">
+
+              <!-- Task overview -->
+              <div class="panel panel-flat">
+                <div class="panel-heading mt-5">
+                  <h5 class="panel-title">
+                    <% if @project.source_company_id != nil %>
+                      <i class="icon-spinner4 position-left"></i> <%= Company.find(@project.source_company_id).name %>
+                    <% end %>
+                  </h5>
+                </div>
+
+                <div class="panel-body">
+                  <h6 class="text-semibold"><i class="icon-file-text position-left"></i>依頼内容</h6>
+                  <p class="content-group-lg"><%= @project.body %></p>
+
+                  <div class="row container-fluid">
+                    <div class="col-sm-4">
+                      <div class="content-group">
+                        <dl>
+                          <dt class="text-size-small text-primary text-uppercase">畳表</dt>
+                          <dd><%= @project.kind_body %></dd>
+
+                          <dt class="text-size-small text-primary text-uppercase">畳縁</dt>
+                          <dd><%= @project.kind_edge %></dd>
+                        </dl>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="content-group">
+                        <dl>
+                          <dt class="text-size-small text-primary text-uppercase">必要数量</dt>
+                          <dd><%= @project.need_amount %></dd>
+
+                          <dt class="text-size-small text-primary text-uppercase">見積額(一部屋あたり)</dt>
+                          <dd><%= @project.estimated_sum %></dd>
+                        </dl>
+                      </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="content-group">
+                        <dl>
+                          <dt class="text-size-small text-primary text-uppercase">納期</dt>
+                          <dd><%= @project.deadline %></dd>
+
+                          <dt class="text-size-small text-primary text-uppercase">備考</dt>
+                          <dd><%= @project.note %></dd>
+                        </dl>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="panel-footer">
+                  <ul>
+                    <li><span class="status-mark border-blue position-left"></span> ステータス: <%= @project.status %></li>
+                  </ul>
+
+                  <ul class="pull-right">
+                    <li><a href="#"><i class="icon-compose" data-toggle="modal" data-target="#edit_project_form"></i></a></li>
+                    <li><a href="#"><i class="icon-trash" data-toggle="modal" data-target="#modal_mini"></i></a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /task overview -->
+
+              <!-- Comments -->
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h5 class="panel-title text-semiold"><i class="icon-bubbles4 position-left"></i> コメント</h5>
+                </div>
+
+                <div class="panel-body">
+                  <ul class="media-list content-group-lg stack-media-on-mobile">
+
+                    <legend class="text-bold">受注申請</legend>
+
+                    <% Comment.where(project_id: @project.id, kind: 'request', status: nil).order(:created_at).reverse_order.each do |comment| %>
+                    <li class="media">
+                      <div class="media-left">
+                        <a href="#"><img src="/assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+                      </div>
+
+                      <div class="media-body">
+                        <div class="media-heading">
+                          <a href="#" class="text-semibold"><%= Company.find(comment.company_id).name %></a>
+                          <span class="media-annotation dotted"><%= calc_post_time_str(comment.created_at) %></span>
+                        </div>
+
+                        <p><%= comment.body %></p>
+
+                        <ul class="list-inline list-inline-separate text-size-small">
+                          <li><%= link_to "契約する", project_comment_path(@project, comment, status: 'ok'), method: :put %></li>
+                        </ul>
+                      </div>
+                    </li>
+                    <% end %>
+
+                    <legend class="text-bold">コメント</legend>
+
+                    <% Comment.where(project_id: @project.id, kind: 'general').order(:created_at).reverse_order.each do |comment| %>
+                    <li class="media">
+                      <div class="media-left">
+                        <a href="#"><img src="/assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+                      </div>
+
+                      <div class="media-body">
+                        <div class="media-heading">
+                          <a href="#" class="text-semibold"><%= Company.find(comment.company_id).name %></a>
+                          <span class="media-annotation dotted"><%= calc_post_time_str(comment.created_at) %></span>
+                        </div>
+
+                        <p><%= comment.body %></p>
+                      </div>
+                    </li>
+                    <% end %>
+
+                  </ul>
+
+                <h6 class="text-semibold"><i class="icon-pencil7 position-left"></i> コメントを書く</h6>
+                <div class="content-group">
+                  <div class="col-lg-12">
+                    <%= form_for [@project, @comment] do |f| %>
+                    <div class="col-lg-4">
+                      <div class="form-group">
+                        <%= f.select :kind, {'コメント' => 'general', '受注申請' => 'request'}, class: 'form-control input-xlg' %>
+                      </div>
+                    </div>
+
+                    <% if company_signed_in? %>
+                      <%= f.text_field :company_id, type: "hidden", value: "#{current_company.id}", class: 'form-control' %>
+                    <% else %>
+                      <%= f.text_field :company_id, type: "hidden", value: "#{Company.first.id}", class: 'form-control' %>
+                    <% end %>
+
+                    <div class="col-lg-5">
+                      <%= f.text_field :amount, class: 'form-control', placeholder: "受注申請の場合のみ、枚数を記入してください" %>
+                    </div>
+
+                    <div class="col-lg-12">
+                      <%= f.text_area :body, :class => "form-control", :placeholder => "ここにコメントを記入してください", :rows => "5", :cols => "5" %>
+                    </div>
+
+                    <%= f.submit "投稿する", class: "btn bg-blue" %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+              <!-- /comments -->
+            </div>
+          </div>
+          <!-- /detailed task -->
+
+          <!-- Horizontal form modal -->
+          <div id="edit_project_form" class="modal fade">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h5 class="modal-title">案件編集</h5>
+                </div>
+
+                <%= form_for @project, html: {:class => 'edit_project_form'} do |f| %>
+
+                <div class="modal-body">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <fieldset>
+                        <div class="form-group">
+                          <%= f.label '依頼元企業：', class: 'col-lg-3 control-label' %>
+                          <div class="col-lg-9">
+                            <% if @project.source_company_id != nil %>
+                            <%= f.text_field :source_company_name, class: 'form-control', disabled: 'true', placeholder: Company.find(@project.source_company_id).name %>
+                            <% else %>
+                            <%= f.text_field :source_company_id, class: 'form-control', disabled: 'true', placeholder: '' %>
+                            <% end %>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                          <%= f.label '依頼元企業：', class: 'col-lg-3 control-label' %>
+                          <div class="col-lg-9">
+                          <% if @project.dest_company_id != nil %>
+                          <%= f.text_field :dest_company_name, class: 'form-control', disabled: 'true', placeholder: Company.find(@project.dest_company_id).name %>
+                          <% else %>
+                          <%= f.text_field :dest_company_id, class: 'form-control', disabled: 'true', placeholder: '' %>
+                          <% end %>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">ステータス：</label>
+                          <div class="col-lg-9">
+                            <%= f.select :status, {'公開' => 'public', '非公開' => 'private'}, class: 'select' %>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">案件名：</label>
+                          <div class="col-lg-9">
+                            <%= f.text_field :name, class: 'form-control' %>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">案件詳細：</label>
+                          <div class="col-lg-9">
+                            <%= f.text_area :body, rows: '10', cols: '5', class: 'form-control' %>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-6">
+                      <fieldset>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">畳表：</label>
+                          <div class="col-lg-9">
+                          <%= f.text_field :kind_body, class: 'form-control' %>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">畳縁：</label>
+                          <div class="col-lg-9">
+                          <%= f.text_field :kind_edge, class: 'form-control' %>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">必要数量(畳)：</label>
+                          <div class="col-lg-9">
+                          <%= f.text_field :need_amount, class: 'form-control' %>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">見積額<br>(円/1畳)：</label>
+                          <div class="col-lg-9">
+                          <%= f.text_field :estimated_sum, class: 'form-control' %>
+                          </div>
+                        </div>
+                        <br><br>
+                        <div class="form-group">
+                          <label class="col-lg-3 control-label">備考：</label>
+                          <div class="col-lg-9">
+                          <%= f.text_area :note, rows: '10', cols: '5', class: 'form-control' %>
+                          </div>
+                        </div>
+                      </fieldset>
+                    </div>
+                  </div>
+
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">閉じる</button>
+                    <button type="submit" class="btn btn-primary">保存する</button>
+                  </div>
+                </div>
+
+                <% end %>
+
+              </div>
+            </div>
+          </div>
+          <!-- /horizontal form modal -->
+
+          <!-- Mini modal -->
+          <div id="modal_mini" class="modal fade">
+            <div class="modal-dialog modal-xs">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h6 class="modal-title">本当にこの案件を削除しますか？</h6>
+                </div>
+                <div class="modal-footer">
+                  <%= link_to('削除', @project, method: :delete, class: "btn btn-primary") %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /mini modal -->
+
+          <%= render 'shared/footer' %>
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+  </div>
+  <!-- /page container -->
+
+</body>
+</html>
