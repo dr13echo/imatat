@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ダッシュボード | imaTat</title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/core.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="assets/js/plugins/visualization/d3/d3.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/visualization/d3/d3_tooltip.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/visualization/echarts/echarts.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/uniform.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/selects/bootstrap_multiselect.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/ui/moment/moment.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/pickers/daterangepicker.js"></script>
+	<script type="text/javascript" src="assets/js/core/app.js"></script>
+	<script type="text/javascript" src="assets/js/charts/echarts/candlesticks_for_radar_filled.js"></script>
+	<script type="text/javascript" src="assets/js/pages/dashboard.js"></script>
+	<!-- /theme JS files -->
+</head>
+
+<body>
+	<!-- Main navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="index.html">imaTat</a>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav">
+				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+			</ul>
+
+			<p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown dropdown-user">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="assets/images/placeholder.jpg" alt="">
+						<span>(有)八巻畳工業</span>
+						<i class="caret"></i>
+					</a>
+
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a href="#" data-toggle="modal" data-target="#modal_form_horizontal"><i class="icon-user-tie"></i> アカウント編集</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="icon-switch2"></i> ログアウト</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+	<!-- Page container -->
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main sidebar -->
+			<div class="sidebar sidebar-main sidebar-fixed">
+				<div class="sidebar-content">
+
+					<!-- User menu -->
+					<div class="sidebar-user">
+						<div class="category-content">
+							<div class="media">
+								<a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+								<div class="media-body">
+									<span class="media-heading text-semibold">(有)八巻畳工業</span>
+									<div class="text-size-mini text-muted">
+										<i class="icon-pin text-size-small"></i> 東京都北区
+									</div>
+								</div>
+
+								<div class="media-right media-middle">
+									<ul class="icons-list">
+										<li>
+											<a href="#" data-toggle="modal" data-target="#modal_form_horizontal"><i class="icon-cog3"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /user menu -->
+
+
+					<!-- Main navigation -->
+					<div class="sidebar-category sidebar-category-visible">
+						<div class="category-content no-padding">
+							<ul class="navigation navigation-main navigation-accordion">
+
+								<li><a href="index.html"><i class="icon-newspaper"></i> <span>ダッシュボード</span></a></li>
+
+								<!-- projects -->
+								<li href="#" class="navigation-header"><span>案件</span> <i class="icon-menu" title="Forms"></i></li>
+								<li>
+									<a href="#"><i class="icon-arrow-left16"></i> <span>受注</span></a>
+									<ul>
+										<li><a href="#">依頼された案件</a></li>
+										<li><a href="#">契約を確認する</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class=" icon-arrow-right16"></i> <span>発注</span></a>
+									<ul>
+										<li><a href="#">依頼した案件</a></li>
+										<li><a href="#">案件を作成する</a></li>
+										<li><a href="#">契約を確認する</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class="icon-store"></i> <span>企業一覧</span></a>
+								</li>
+								<!-- /projects -->
+
+								<!-- accounts -->
+								<li class="navigation-header"><span>アカウント</span> <i class="icon-menu" title="Main pages"></i></li>
+								<li>
+									<a href="#" data-toggle="modal" data-target="#modal_form_horizontal"><i class="icon-user-tie"></i> <span>アカウント編集</span></a>
+								</li>
+								<!-- /accounts -->
+
+							</ul>
+						</div>
+					</div>
+					<!-- /main navigation -->
+
+				</div>
+			</div>
+			<!-- /main sidebar -->
+
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Inside page title -->
+				<div class="panel border-top-primary">
+				</div>
+				<div class="panel border-top-primary">
+				</div>
+
+				<div class="page-header">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h5>
+								<i class="icon-newspaper position-left"></i> <span class="text-semibold">imaTat</span> - ダッシュボード
+								<small class="display-block">あなたのダッシュボードです。案件の契約進捗はいかがでしょうか？</small>
+							</h5>
+						</div>
+
+						<div class="heading-elements">
+							<ul class="breadcrumb">
+								<li><i class="icon-newspaper position-left"></i> ダッシュボード</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /inside page title -->
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Dashboard content -->
+					<div class="row">
+						<div class="col-lg-8">
+
+							<!-- Quick stats boxes -->
+							<div class="row">
+								<div class="col-lg-4">
+
+									<!-- users count -->
+									<div class="panel bg-teal-400">
+										<div class="panel-body">
+											<div class="heading-elements">
+												<ul class="icons-list">
+													<li><a data-action="reload"></a></li>
+												</ul>
+											</div>
+											<h3 class="no-margin"><i class="icon-users4"></i> <span>3,450</span></h3>
+											社が登録しています
+										</div>
+
+										<div class="container-fluid">
+											<div id="members-online"></div>
+										</div>
+									</div>
+									<!-- /users count-->
+
+								</div>
+
+								<div class="col-lg-4">
+
+									<!-- Current server load -->
+									<div class="panel bg-pink-400">
+										<div class="panel-body">
+											<div class="heading-elements">
+												<ul class="icons-list">
+													<li><a data-action="reload"></a></li>
+												</ul>
+											</div>
+											<h3 class="no-margin"><i class="icon-map4"></i> <span>494</span></h3>
+											案件が依頼されました
+										</div>
+
+										<div id="server-load"></div>
+									</div>
+									<!-- /current server load -->
+
+								</div>
+
+								<div class="col-lg-4">
+
+									<!-- Today's revenue -->
+									<div class="panel bg-blue-400">
+										<div class="panel-body">
+											<div class="heading-elements">
+												<ul class="icons-list">
+													<li><a data-action="reload"></a></li>
+												</ul>
+											</div>
+
+											<h3 class="no-margin"><i class="icon-checkmark4"></i> <span>560</span></h3>
+											回の契約が交わされました
+										</div>
+
+										<div id="today-revenue"></div>
+									</div>
+									<!-- /today's revenue -->
+
+								</div>
+							</div>
+							<!-- /quick stats boxes -->
+
+							<!-- My score -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h5 class="panel-title">自社のスコア</h5>
+									<div class="heading-elements">
+										<ul class="icons-list">
+											<li><a data-action="collapse"></a></li>
+											<li><a data-action="reload"></a></li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="panel-body">
+									<div class="chart-container">
+										<div class="chart has-fixed-height" id="radar_filled"></div>
+									</div>
+								</div>
+							</div>
+							<!-- /my score -->
+
+							<!-- progress -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h6 class="panel-title">契約の進行状況</h6>
+									<div class="heading-elements">
+										<ul class="icons-list">
+											<li><a data-action="collapse"></a></li>
+											<li><a data-action="reload"></a></li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="panel-body">
+									<div class="row">
+										<ul class="progress-list">
+											<li>
+												<label>案件4 <span>80%</span></label>
+												<div class="progress progress-xxs">
+													<div class="progress-bar progress-bar-danger" style="width: 80%">
+														<span class="sr-only">80% Complete</span>
+													</div>
+												</div>
+											</li>
+											<li>
+												<label>案件5 <span>70%</span></label>
+												<div class="progress progress-xxs">
+													<div class="progress-bar progress-bar-info" style="width: 70%">
+														<span class="sr-only">70% Complete</span>
+													</div>
+												</div>
+											</li>
+											<li>
+												<label>案件6 <span>50%</span></label>
+												<div class="progress progress-xxs">
+													<div class="progress-bar progress-bar-primary" style="width: 50%">
+														<span class="sr-only">50% Complete</span>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!-- /progress -->
+
+							<!-- Latest posts -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h6 class="panel-title">新しい案件</h6>
+									<div class="heading-elements">
+										<ul class="icons-list">
+											<li><a data-action="collapse"></a></li>
+											<li><a data-action="reload"></a></li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="panel-body">
+									<div class="media stack-media-on-mobile">
+										<div class="media-left">
+											<div class="thumb">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-responsive img-rounded media-preview" alt="">
+												</a>
+											</div>
+										</div>
+
+										<div class="media-body">
+											<h6 class="media-heading"><a href="#">○○邸宅の大広間表替え</a></h6>
+											<ul class="list-inline list-inline-separate text-muted mb-5">
+												<li><i class=" icon-user-tie position-left"></i> 大間畳店</li>
+												<li>13:23 2015/11/25</li>
+											</ul>
+											○○邸宅の大広間(計100畳)の案件です。腕に自信のある職人...
+										</div>
+									</div>
+
+									<div class="media stack-media-on-mobile">
+										<div class="media-left">
+											<div class="thumb">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-responsive img-rounded media-preview" alt="">
+												</a>
+											</div>
+										</div>
+
+										<div class="media-body">
+											<h6 class="media-heading"><a href="#">老舗料亭の全部屋表替え</a></h6>
+											<ul class="list-inline list-inline-separate text-muted mb-5">
+												<li><i class=" icon-user-tie position-left"></i> 八王子畳組合</li>
+												<li>15:13 2015/11/24</li>
+											</ul>
+											八王子畳組合からの依頼です。高尾山付近の老舗日本料理屋の...
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /latest posts -->
+
+						</div>
+
+						<div class="col-lg-4">
+
+							<!-- New comments -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h6 class="panel-title">新着コメント</h6>
+									<div class="heading-elements">
+										<span class="heading-text"><i class="icon-history text-warning position-left"></i> 2015.11.25</span>
+									</div>
+								</div>
+
+								<!-- Numbers -->
+								<div class="container-fluid">
+									<div class="row text-center">
+										<div class="col-md-4">
+											<div class="content-group">
+												<h6 class="text-semibold no-margin"><i class="icon-clipboard3 position-left text-slate"></i> 2,345</h6>
+												<span class="text-muted text-size-small">今日</span>
+											</div>
+										</div>
+
+										<div class="col-md-4">
+											<div class="content-group">
+												<h6 class="text-semibold no-margin"><i class="icon-calendar3 position-left text-slate"></i> 3,568</h6>
+												<span class="text-muted text-size-small">今週</span>
+											</div>
+										</div>
+
+										<div class="col-md-4">
+											<div class="content-group">
+												<h6 class="text-semibold no-margin"><i class="icon-comments position-left text-slate"></i> 32,693</h6>
+												<span class="text-muted text-size-small">全期間</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /numbers -->
+
+
+								<!-- Area chart -->
+								<div id="messages-stats"></div>
+								<!-- /area chart -->
+
+
+								<!-- Tabs -->
+								<ul class="nav nav-lg nav-tabs nav-justified no-margin no-border-radius bg-indigo-400 border-top border-top-indigo-300">
+									<li class="active">
+										<a href="#messages-dest" class="text-size-small text-uppercase" data-toggle="tab">
+											あなたへの案件
+										</a>
+									</li>
+
+									<li>
+										<a href="#messages-source" class="text-size-small text-uppercase" data-toggle="tab">
+											あなたの案件
+										</a>
+									</li>
+								</ul>
+								<!-- /tabs -->
+
+
+								<!-- Tabs content -->
+								<div class="tab-content">
+									<div class="tab-pane active fade in has-padding" id="messages-dest">
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+													<span class="badge bg-danger-400 media-badge">8</span>
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														案件1
+														<span class="media-annotation pull-right">14:58 11/25</span>
+													</a>
+
+													<span class="display-block text-muted">企業名：よろしくお願いします...</span>
+												</div>
+											</li>
+
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+													<span class="badge bg-danger-400 media-badge">6</span>
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														案件2
+														<span class="media-annotation pull-right">12:16 11/25</span>
+													</a>
+
+													<span class="display-block text-muted">企業名：よろしくお願いします...</span>
+												</div>
+											</li>
+
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														案件3
+														<span class="media-annotation pull-right">09:48 11/24</span>
+													</a>
+
+													<span class="display-block text-muted">企業名：よろしくお願いします...</span>
+												</div>
+											</li>
+										</ul>
+									</div>
+
+									<div class="tab-pane fade has-padding" id="messages-source">
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														案件4
+														<span class="media-annotation pull-right">19:58 11/25</span>
+													</a>
+
+													<span class="display-block text-muted">企業名：よろしくお願いします...</span>
+												</div>
+											</li>
+
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														案件5
+														<span class="media-annotation pull-right">16:35 11/25</span>
+													</a>
+
+													<span class="display-block text-muted">企業名：よろしくお願いします...</span>
+												</div>
+											</li>
+
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														案件6
+														<span class="media-annotation pull-right">12:16 11/24</span>
+													</a>
+
+													<span class="display-block text-muted">企業名：よろしくお願いします...</span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<!-- /tabs content -->
+
+							</div>
+							<!-- /new comments -->
+
+
+							<!-- New review -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h6 class="panel-title">新着レビュー</h6>
+									<div class="heading-elements">
+										<span class="heading-text"><i class="icon-history text-warning position-left"></i> 2015.11.25</span>
+									</div>
+								</div>
+
+								<!-- Numbers -->
+								<div class="container-fluid">
+									<div class="row text-center">
+										<div class="col-md-4">
+											<div class="content-group">
+												<h6 class="text-semibold no-margin"><i class="icon-clipboard3 position-left text-slate"></i> 2</h6>
+												<span class="text-muted text-size-small">今日</span>
+											</div>
+										</div>
+
+										<div class="col-md-4">
+											<div class="content-group">
+												<h6 class="text-semibold no-margin"><i class="icon-calendar3 position-left text-slate"></i> 6</h6>
+												<span class="text-muted text-size-small">今週</span>
+											</div>
+										</div>
+
+										<div class="col-md-4">
+											<div class="content-group">
+												<h6 class="text-semibold no-margin"><i class="icon-comments position-left text-slate"></i> 213</h6>
+												<span class="text-muted text-size-small">全期間</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /numbers -->
+
+
+								<!-- Area chart -->
+								<div id="messages-stats"></div>
+								<!-- /area chart -->
+
+
+								<!-- Tabs -->
+								<ul class="nav nav-lg nav-tabs nav-justified no-margin no-border-radius bg-indigo-400 border-top border-top-indigo-300">
+									<li class="active">
+										<a class="text-size-small text-uppercase" data-toggle="tab">
+											あなたへのレビュー
+										</a>
+									</li>
+								</ul>
+								<!-- /tabs -->
+
+
+								<!-- Tabs content -->
+								<div class="tab-content">
+									<div class="tab-pane active fade in has-padding" id="messages-tue">
+										<ul class="media-list">
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+													<span class="badge bg-danger-400 media-badge">4.5</span>
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														企業1
+														<span class="media-annotation pull-right">14:58 11/25</span>
+													</a>
+
+													<span class="display-block text-muted">非常に良い出来でした...</span>
+												</div>
+											</li>
+
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+													<span class="badge bg-danger-400 media-badge">3.5</span>
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														企業2
+														<span class="media-annotation pull-right">12:16 11/25</span>
+													</a>
+
+													<span class="display-block text-muted">非常に良い出来でした...</span>
+												</div>
+											</li>
+
+											<li class="media">
+												<div class="media-left">
+													<img src="assets/images/placeholder.jpg" class="img-circle img-xs" alt="">
+													<span class="badge bg-danger-400 media-badge">4.0</span>
+												</div>
+
+												<div class="media-body">
+													<a href="#">
+														企業3
+														<span class="media-annotation pull-right">09:48 11/24</span>
+													</a>
+
+													<span class="display-block text-muted">非常に良い出来でした...</span>
+												</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+								<!-- /tabs content -->
+
+							</div>
+							<!-- /new review -->
+
+						</div>
+					</div>
+					<!-- /dashboard content -->
+
+					<!-- Horizontal form modal -->
+					<div id="modal_form_horizontal" class="modal fade">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h5 class="modal-title">アカウント編集</h5>
+								</div>
+
+								<form action="#" class="form-horizontal">
+									<div class="modal-body">
+										<div class="panel-body">
+											<div class="form-group">
+												<label>登録Eメール：</label>
+												<input type="text" class="form-control" value="imatat@tatami.jp">
+											</div>
+
+											<div class="form-group">
+												<label>企業名：</label>
+												<input type="text" class="form-control" value="(株)イマタット畳店">
+											</div>
+
+											<div class="form-group">
+												<label>郵便番号：</label>
+												<input type="text" class="form-control" value="123-1234">
+											</div>
+
+											<div class="form-group">
+												<label>住所：</label>
+												<input type="text" class="form-control" value="東京都日野市南平1-1">
+											</div>
+
+											<div class="form-group">
+												<label class="display-block">都道府県:</label>
+												<select data-placeholder="東京" class="select-fixed" value="東京都">
+													<option></option>
+														<option value="AK">北海道</option>
+														<option value="HI">青森</option>
+														<option value="CA">秋田</option>
+														<option value="NV">岩手</option>
+														<option value="WA">東京</option>
+														<option value="AZ">千葉</option>
+													</optgroup>
+												</select>
+											</div>
+
+											<div class="form-group">
+												<label>日産(枚)：</label>
+												<input type="text" class="form-control" value="6">
+											</div>
+
+											<div class="form-group">
+												<label>従業員数(人)：</label>
+												<input type="text" class="form-control" value="2">
+											</div>
+
+											<div class="form-group">
+												<label>電話番号：</label>
+												<input type="text" class="form-control" value="012-345-6789">
+											</div>
+
+											<div class="form-group">
+												<label>パスワード：</label>
+												<input type="password" class="form-control" value="">
+											</div>
+
+											<div class="form-group">
+												<label>パスワード再入力：</label>
+												<input type="password" class="form-control" value="">
+											</div>
+
+											<div class="form-group">
+												<label>プロフィール画像：</label>
+												<input type="file" class="file-styled">
+											</div>
+
+											<div class="form-group">
+												<label>企業紹介:</label>
+												<textarea rows="5" cols="5" class="form-control" value="企業紹介"></textarea>
+											</div>
+
+											<div class="form-group">
+												<label class="display-block">忙しさ:</label>
+												<select data-placeholder="忙しい" class="select-fixed" value="忙しい">
+													<option></option>
+														<option value="highest">とても忙しい</option>
+														<option value="high">忙しい</option>
+														<option value="normal">普通</option>
+														<option value="low">あまり忙しくない</option>
+														<option value="lowest">忙しくない</option>
+													</optgroup>
+												</select>
+											</div>
+
+											<div class="checkbox checkbox-switchery">
+												<label>
+													<input type="checkbox" class="switchery">
+													非公開設定
+													<span class="help-block">onにすると企業一覧に表示されなくなります</span>
+												</label>
+											</div>
+										</div>
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+										<button type="submit" class="btn btn-primary">Submit form</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- /horizontal form modal -->
+
+					<!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2015. <a href="#">imaTat</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Kohki OBATA</a>
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+	</div>
+	<!-- /page container -->
+
+</body>
+</html>

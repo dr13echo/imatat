@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>依頼した案件 | imaTat</title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/core.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="assets/js/core/app.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body>
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="index.html">imaTat</a>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav">
+				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+			</ul>
+
+			<p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-bubbles4"></i>
+						<span class="badge bg-warning-400">2</span>
+					</a>
+
+					<div class="dropdown-menu dropdown-content width-350">
+						<div class="dropdown-content-heading">
+							新着コメント
+						</div>
+
+						<ul class="media-list dropdown-content-body">
+							<li class="media">
+								<div class="media-left">
+									<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+									<span class="badge bg-danger-400 media-badge">5</span>
+								</div>
+
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">南団地修繕での畳入れ替え</span>
+										<span class="media-annotation pull-right">04:58</span>
+									</a>
+
+									<span class="text-muted">南畳店：初めまして！今回の案件、ぜひうちで請けさせていただ...</span>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left">
+									<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+									<span class="badge bg-danger-400 media-badge">4</span>
+								</div>
+
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">東上寺の大広間畳表替え</span>
+										<span class="media-annotation pull-right">12:16</span>
+									</a>
+
+									<span class="text-muted">東畳店：例年北寺の表替えを請け負っております。ぜひ今回の案件...</span>
+								</div>
+							</li>
+
+						<div class="dropdown-content-footer">
+							<a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
+						</div>
+					</div>
+				</li>
+
+				<li class="dropdown dropdown-user">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="assets/images/placeholder.jpg" alt="">
+						<span>(有)八巻畳工業</span>
+						<i class="caret"></i>
+					</a>
+
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a href="#"><i class="icon-user-tie"></i> アカウント編集</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="icon-switch2"></i> ログアウト</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page container -->
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main sidebar -->
+			<div class="sidebar sidebar-main sidebar-fixed">
+				<div class="sidebar-content">
+
+					<!-- User menu -->
+					<div class="sidebar-user">
+						<div class="category-content">
+							<div class="media">
+								<a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+								<div class="media-body">
+									<span class="media-heading text-semibold">(有)八巻畳工業</span>
+									<div class="text-size-mini text-muted">
+										<i class="icon-pin text-size-small"></i> 東京都北区
+									</div>
+								</div>
+
+								<div class="media-right media-middle">
+									<ul class="icons-list">
+										<li>
+											<a href="#"><i class="icon-cog3"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /user menu -->
+
+
+					<!-- Main navigation -->
+					<div class="sidebar-category sidebar-category-visible">
+						<div class="category-content no-padding">
+							<ul class="navigation navigation-main navigation-accordion">
+
+								<li><a href="index.html"><i class="icon-newspaper"></i> <span>ダッシュボード</span></a></li>
+
+								<!-- projects -->
+								<li href="#" class="navigation-header"><span>案件</span> <i class="icon-menu" title="Forms"></i></li>
+								<li>
+									<a href="#"><i class="icon-arrow-left16"></i> <span>受注</span></a>
+									<ul>
+										<li><a href="#">依頼された案件</a></li>
+										<li><a href="#">契約を確認する</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class=" icon-arrow-right16"></i> <span>発注</span></a>
+									<ul>
+										<li><a href="#">依頼した案件</a></li>
+										<li><a href="#">案件を作成する</a></li>
+										<li><a href="#">契約を確認する</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class="icon-store"></i> <span>企業一覧</span></a>
+								</li>
+								<!-- /projects -->
+
+								<!-- accounts -->
+								<li class="navigation-header"><span>アカウント</span> <i class="icon-menu" title="Main pages"></i></li>
+								<li>
+									<a href="#"><i class="icon-user-tie"></i> <span>アカウント編集</span></a>
+								</li>
+								<!-- /accounts -->
+
+							</ul>
+						</div>
+					</div>
+					<!-- /main navigation -->
+
+				</div>
+			</div>
+			<!-- /main sidebar -->
+
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Inside page title -->
+				<div class="panel border-top-primary">
+				</div>
+				<div class="panel border-top-primary">
+				</div>
+
+				<div class="page-header">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h5>
+								<i class="icon-arrow-right16 position-left"></i> <span class="text-semibold">imaTat</span> - 依頼した案件
+								<small class="display-block">あなたが作成した案件です。コメントを確認して契約をしましょう！</small>
+							</h5>
+						</div>
+
+						<div class="heading-elements">
+							<ul class="breadcrumb">
+								<li><a href="index.html"><i class="icon-newspaper position-left"></i> ダッシュボード</a></li>
+								<li><i class="icon-arrow-right16 position-left"></i> 依頼した案件</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /inside page title -->
+
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Search field -->
+					<div class="panel panel-flat">
+						<div class="panel-heading">
+							<h5 class="panel-title">検索</h5>
+							<div class="heading-elements">
+								<ul class="icons-list">
+									<li><a data-action="collapse"></a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="panel-body">
+							<form action="#" class="main-search">
+								<div class="input-group content-group">
+									<div class="has-feedback has-feedback-left">
+										<input type="text" class="form-control input-xlg" placeholder="案件名、企業名で検索できます">
+										<div class="form-control-feedback">
+											<i class="icon-search4 text-muted text-size-base"></i>
+										</div>
+									</div>
+
+									<div class="input-group-btn">
+										<button type="submit" class="btn btn-primary btn-xlg">検索</button>
+									</div>
+								</div>
+
+								<div class="row search-option-buttons">
+
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- /search field -->
+
+					<!-- Search results -->
+					<div class="content-group">
+						<p class="text-muted text-size-small content-group">About 827,000 results (0.34 seconds)</p>
+
+						<div class="search-results-list content-group">
+
+						<div class="panel panel-flat">
+							<div class="panel-heading">
+								<h5 class="panel-title">検索結果</h5>
+								<div class="heading-elements">
+									<ul class="icons-list">
+										<li><a data-action="reload"></a></li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="table-responsive">
+								<table class="table">
+									<thead>
+										<tr class="bg-info">
+											<th style="width: 130px;"><a href="#" class="bg-info">ステータス<i class="icon-menu-open"></i></a></th>
+											<th>案件名</th>
+											<th style="width: 140px;">依頼先</th>
+											<th style="width: 90px;"><a href="#" class="bg-info">納期<i class="icon-menu-open"></th>
+											<th style="width: 250px;"><a href="#" class="bg-info">契約進捗<i class="icon-menu-open"></th>
+											<th style="width: 200px;"></th>
+									</thead>
+									<tbody>
+										<tr>
+											<td>公開</td>
+											<td>依頼した案件の案件名</td>
+											<td><a href="#" class="text-default">北畳店株式会社</a></td>
+											<td>12/20</td>
+											<td>
+												<div class="progress">
+													<div class="progress-bar bg-info" style="width: 85%">
+														<span>85%</span>
+													</div>
+												</div>
+												</div>
+											</td>
+											<td>
+												<button type="button" class="btn btn-info btn-xs"><i class="icon-hammer-wrench position-left"></i> 詳細</button>
+												<button type="button" class="btn btn-info btn-xs"><i class="icon-checkmark4 position-left"></i> 完了</button>
+											</td>
+										</tr>
+										<tr>
+											<td>非公開</td>
+											<td>依頼した案件の案件名</td>
+											<td>一般公開</td>
+											<td>12/20</td>
+											<td>
+												<div class="progress">
+													<div class="progress-bar bg-warning" style="width: 0%">
+														<span>0%</span>
+													</div>
+												</div>
+												</div>
+											</td>
+											<td>
+												<button type="button" class="btn btn-info btn-xs"><i class="icon-hammer-wrench position-left"></i> 詳細</button>
+												<button type="button" class="btn btn-info btn-xs"><i class="icon-checkmark4 position-left"></i> 完了</button>
+											</td>
+										</tr>
+										<tr>
+											<td>完了</td>
+											<td>依頼した案件の案件名</td>
+											<td>一般公開</td>
+											<td>12/20</td>
+											<td>
+												<div class="progress">
+													<div class="progress-bar bg-success" style="width: 100%">
+														<span>100%</span>
+													</div>
+												</div>
+												</div>
+											</td>
+											<td>
+												<button type="button" class="btn btn-info btn-xs"><i class="icon-hammer-wrench position-left"></i> 詳細</button>
+												<button type="button" class="btn btn-info btn-xs"><i class="icon-checkmark4 position-left"></i> 完了</button>
+											</td>
+										</tr>
+										<tr>
+											<td>公開</td>
+											<td>依頼した案件の案件名</td>
+											<td>一般公開</td>
+											<td>12/20</td>
+											<td>
+												<div class="progress">
+													<div class="progress-bar bg-danger" style="width: 12%">
+														<span>12% Complete</span>
+													</div>
+												</div>
+												</div>
+											</td>
+											<td>
+												<button type="button" class="btn btn-info btn-xs"><i class="icon-hammer-wrench position-left"></i> 詳細</button>
+												<button type="button" class="btn btn-info btn-xs"><i class="icon-checkmark4 position-left"></i> 完了</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+						</div>
+
+						<ul>
+							<ul class="pagination pagination-flat text-center pagination-xs no-margin-bottom">
+							<li class="disabled"><a href="#">&larr;</a></li>
+							<li class="active"><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><span>...</span></li>
+							<li><a href="#">58</a></li>
+							<li><a href="#">59</a></li>
+							<li><a href="#">&rarr;</a></li>
+						</ul>
+					</div>
+					<!-- /search results -->
+
+		      <!-- Vertical form modal -->
+					<div id="modal_form_vertical" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h5 class="modal-title">詳細検索</h5>
+								</div>
+
+								<form action="#">
+									<div class="modal-footer">
+										<button type="button" class="btn btn-link" data-dismiss="modal">閉じる</button>
+										<button type="submit" class="btn btn-primary">検索</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- /vertical form modal -->
+
+					<!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2015. <a href="#">imaTat</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Kohki OBATA</a>
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+</body>
+</html>

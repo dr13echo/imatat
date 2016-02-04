@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>案件名 | imaTat</title>
+
+	<!-- Global stylesheets -->
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+	<link href="assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/core.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/components.min.css" rel="stylesheet" type="text/css">
+	<link href="assets/css/colors.min.css" rel="stylesheet" type="text/css">
+	<!-- /global stylesheets -->
+
+	<!-- Core JS files -->
+	<script type="text/javascript" src="assets/js/plugins/loaders/pace.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/jquery.min.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/bootstrap.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/loaders/blockui.min.js"></script>
+	<!-- /core JS files -->
+
+	<!-- Theme JS files -->
+	<script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="assets/js/core/libraries/jquery_ui/datepicker.min.js"></script>
+	<script type="text/javascript" src="assets/js/plugins/forms/styling/switchery.min.js"></script>
+
+	<script type="text/javascript" src="assets/js/core/app.js"></script>
+	<script type="text/javascript" src="assets/js/pages/task_detailed.js"></script>
+	<!-- /theme JS files -->
+
+</head>
+
+<body class="sidebar-xs">
+
+	<!-- Main navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="index.html">imaTat</a>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav">
+				<li><a class="sidebar-control sidebar-main-toggle hidden-xs"><i class="icon-paragraph-justify3"></i></a></li>
+			</ul>
+
+			<p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						<i class="icon-bubbles4"></i>
+						<span class="badge bg-warning-400">2</span>
+					</a>
+
+					<div class="dropdown-menu dropdown-content width-350">
+						<div class="dropdown-content-heading">
+							新着コメント
+						</div>
+
+						<ul class="media-list dropdown-content-body">
+							<li class="media">
+								<div class="media-left">
+									<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+									<span class="badge bg-danger-400 media-badge">5</span>
+								</div>
+
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">南団地修繕での畳入れ替え</span>
+										<span class="media-annotation pull-right">04:58</span>
+									</a>
+
+									<span class="text-muted">南畳店：初めまして！今回の案件、ぜひうちで請けさせていただ...</span>
+								</div>
+							</li>
+
+							<li class="media">
+								<div class="media-left">
+									<img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt="">
+									<span class="badge bg-danger-400 media-badge">4</span>
+								</div>
+
+								<div class="media-body">
+									<a href="#" class="media-heading">
+										<span class="text-semibold">東上寺の大広間畳表替え</span>
+										<span class="media-annotation pull-right">12:16</span>
+									</a>
+
+									<span class="text-muted">東畳店：例年北寺の表替えを請け負っております。ぜひ今回の案件...</span>
+								</div>
+							</li>
+
+						<div class="dropdown-content-footer">
+							<a href="#" data-popup="tooltip" title="All messages"><i class="icon-menu display-block"></i></a>
+						</div>
+					</div>
+				</li>
+
+				<li class="dropdown dropdown-user">
+					<a class="dropdown-toggle" data-toggle="dropdown">
+						<img src="assets/images/placeholder.jpg" alt="">
+						<span>(有)八巻畳工業</span>
+						<i class="caret"></i>
+					</a>
+
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a href="#"><i class="icon-user-tie"></i> アカウント編集</a></li>
+						<li class="divider"></li>
+						<li><a href="#"><i class="icon-switch2"></i> ログアウト</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- /main navbar -->
+
+
+	<!-- Page container -->
+	<div class="page-container">
+
+		<!-- Page content -->
+		<div class="page-content">
+
+			<!-- Main sidebar -->
+			<div class="sidebar sidebar-main sidebar-fixed">
+				<div class="sidebar-content">
+
+					<!-- User menu -->
+					<div class="sidebar-user">
+						<div class="category-content">
+							<div class="media">
+								<a href="#" class="media-left"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+								<div class="media-body">
+									<span class="media-heading text-semibold">(有)八巻畳工業</span>
+									<div class="text-size-mini text-muted">
+										<i class="icon-pin text-size-small"></i> 東京都北区
+									</div>
+								</div>
+
+								<div class="media-right media-middle">
+									<ul class="icons-list">
+										<li>
+											<a href="#"><i class="icon-cog3"></i></a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /user menu -->
+
+
+					<!-- Main navigation -->
+					<div class="sidebar-category sidebar-category-visible">
+						<div class="category-content no-padding">
+							<ul class="navigation navigation-main navigation-accordion">
+
+								<li><a href="index.html"><i class="icon-newspaper"></i> <span>ダッシュボード</span></a></li>
+
+								<!-- projects -->
+								<li href="#" class="navigation-header"><span>案件</span> <i class="icon-menu" title="Forms"></i></li>
+								<li>
+									<a href="#"><i class="icon-arrow-left16"></i> <span>受注</span></a>
+									<ul>
+										<li><a href="#">依頼された案件</a></li>
+										<li><a href="#">契約を確認する</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class=" icon-arrow-right16"></i> <span>発注</span></a>
+									<ul>
+										<li><a href="#">依頼した案件</a></li>
+										<li><a href="#">案件を作成する</a></li>
+										<li><a href="#">契約を確認する</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="#"><i class="icon-store"></i> <span>企業一覧</span></a>
+								</li>
+								<!-- /projects -->
+
+								<!-- accounts -->
+								<li class="navigation-header"><span>アカウント</span> <i class="icon-menu" title="Main pages"></i></li>
+								<li>
+									<a href="#"><i class="icon-user-tie"></i> <span>アカウント編集</span></a>
+								</li>
+								<!-- /accounts -->
+
+							</ul>
+						</div>
+					</div>
+					<!-- /main navigation -->
+
+				</div>
+			</div>
+			<!-- /main sidebar -->
+
+
+			<!-- Main content -->
+			<div class="content-wrapper">
+
+				<!-- Inside page title -->
+				<div class="panel border-top-primary">
+				</div>
+				<div class="panel border-top-primary">
+				</div>
+
+				<div class="page-header">
+					<div class="page-header-content">
+						<div class="page-title">
+							<h5>
+								<i class="icon-hammer-wrench position-left"></i> 北団地の空き家改修
+							</h5>
+						</div>
+
+						<div class="heading-elements">
+							<ul class="breadcrumb">
+								<li><i class="icon-newspaper position-left"></i> ダッシュボード</li>
+								<li><i class="icon-arrow-right16 position-left"></i> 依頼した案件</li>
+								<br>
+								<li> / <i class="icon-hammer-wrench position-left"></i> 案件名</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- /inside page title -->
+
+
+				<!-- Content area -->
+				<div class="content">
+
+					<!-- Detailed task -->
+					<div class="row">
+						<div class="col-lg-3">
+
+							<!-- 受注申請中 -->
+							<div class="panel panel-flat bg-pink-400">
+								<div class="panel-heading">
+									<h6 class="panel-title"><i class="icon-notification2 position-left"></i>受注申請中</h6>
+									<div class="heading-elements">
+										<ul class="icons-list">
+											<li><a data-action="collapse"></a></li>
+											<li><a data-action="reload"></a></li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="panel-body">
+									<ul class="media-list">
+										<li class="media">
+											<div class="media-left">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+												</a>
+											</div>
+
+											<div class="media-body media-middle text-semibold">
+												企業1
+											</div>
+
+											<div class="media-right media-middle">
+												<ul class="icons-list text-nowrap">
+													<li>
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-down2"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-checkmark pull-right"></i> 契約する</a></li>
+															<li><a href="#"><i class="icon-cross2 pull-right"></i> 拒否する</a></li>
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+												</a>
+											</div>
+
+											<div class="media-body media-middle text-semibold">
+												企業2
+											</div>
+
+											<div class="media-right media-middle">
+												<ul class="icons-list text-nowrap">
+													<li>
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-down2"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-checkmark pull-right"></i> 契約する</a></li>
+															<li><a href="#"><i class="icon-cross2 pull-right"></i> 拒否する</a></li>
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- /受注申請中 -->
+
+							<!-- 交渉中 -->
+							<div class="panel panel-flat bg-blue-400">
+								<div class="panel-heading">
+									<h6 class="panel-title"><i class="icon-users4 position-left"></i>交渉中</h6>
+									<div class="heading-elements">
+										<ul class="icons-list">
+											<li><a data-action="collapse"></a></li>
+											<li><a data-action="reload"></a></li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="panel-body">
+									<ul class="media-list">
+										<li class="media">
+											<div class="media-left">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+												</a>
+											</div>
+
+											<div class="media-body media-middle text-semibold">
+												企業3
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+												</a>
+											</div>
+
+											<div class="media-body media-middle text-semibold">
+												企業4
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+												</a>
+											</div>
+
+											<div class="media-body media-middle text-semibold">
+												企業5
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- /交渉中 -->
+
+							<!-- 契約済み -->
+							<div class="panel panel-flat bg-teal-400">
+								<div class="panel-heading">
+									<h6 class="panel-title"><i class="icon-checkmark position-left"></i>契約済み</h6>
+									<div class="heading-elements">
+										<ul class="icons-list">
+											<li><a data-action="collapse"></a></li>
+											<li><a data-action="reload"></a></li>
+										</ul>
+									</div>
+								</div>
+
+								<div class="panel-body">
+									<ul class="media-list">
+										<li class="media">
+											<div class="media-left">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+												</a>
+											</div>
+
+											<div class="media-body media-middle text-semibold">
+												企業6
+											</div>
+
+											<div class="media-right media-middle">
+												<ul class="icons-list text-nowrap">
+													<li>
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-down2"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-checkmark pull-right"></i> 契約を確認</a></li>
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#">
+													<img src="assets/images/placeholder.jpg" class="img-sm img-circle" alt="">
+												</a>
+											</div>
+
+											<div class="media-body media-middle text-semibold">
+												企業7
+											</div>
+
+											<div class="media-right media-middle">
+												<ul class="icons-list text-nowrap">
+													<li>
+														<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-circle-down2"></i></a>
+														<ul class="dropdown-menu dropdown-menu-right">
+															<li><a href="#"><i class="icon-checkmark pull-right"></i> 契約を確認</a></li>
+														</ul>
+													</li>
+												</ul>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<!-- /契約済み -->
+						</div>
+
+						<div class="col-lg-9">
+
+							<!-- Task overview -->
+							<div class="panel panel-flat">
+								<div class="panel-heading mt-5">
+									<h5 class="panel-title">
+										<i class="icon-spinner4 position-left"></i> (有)八巻畳工業
+									</h5>
+								</div>
+
+								<div class="panel-body">
+									<h6 class="text-semibold"><i class="icon-file-text position-left"></i>依頼内容</h6>
+									<p class="content-group-lg">北団地の空き部屋修繕につき30部屋の畳表替えを受注しましたが、弊社の職人が怪我をしてしまった関係で、製造が間に合いそうになりません。12月の忙しい時期にはなりますが、何卒よろしくお願い致します。</p>
+
+									<div class="row container-fluid">
+										<div class="col-sm-4">
+											<div class="content-group">
+												<dl>
+													<dt class="text-size-small text-primary text-uppercase">畳表</dt>
+													<dd>中国産ランク2</dd>
+
+													<dt class="text-size-small text-primary text-uppercase">畳縁</dt>
+													<dd>標準的なものなら自由</dd>
+												</dl>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="content-group">
+												<dl>
+													<dt class="text-size-small text-primary text-uppercase">必要数量</dt>
+													<dd>6畳30部屋</dd>
+
+													<dt class="text-size-small text-primary text-uppercase">見積額(一部屋あたり)</dt>
+													<dd>3万円</dd>
+												</dl>
+											</div>
+										</div>
+
+										<div class="col-sm-4">
+											<div class="content-group">
+												<dl>
+													<dt class="text-size-small text-primary text-uppercase">納期</dt>
+													<dd>12月20日</dd>
+
+													<dt class="text-size-small text-primary text-uppercase">備考</dt>
+													<dd>見積もりはこちらで行います。製造から納品までの依頼となります。</dd>
+												</dl>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="panel-footer">
+									<ul>
+										<li><span class="status-mark border-blue position-left"></span> ステータス:</li>
+										<li class="dropdown">
+											<a href="#" class="dropdown-toggle" data-toggle="dropdown">公開 <span class="caret"></span></a>
+											<ul class="dropdown-menu">
+												<li class="active"><a href="#">公開</a></li>
+												<li class="divider"></li>
+												<li><a href="#">非公開</a></li>
+											</ul>
+										</li>
+									</ul>
+
+									<ul class="pull-right">
+										<li><a href="#"><i class="icon-compose" data-toggle="modal" data-target="#modal_form_horizontal"></i></a></li>
+										<li><a href="#"><i class="icon-trash" data-toggle="modal" data-target="#modal_mini"></i></a></li>
+									</ul>
+								</div>
+							</div>
+							<!-- /task overview -->
+
+							<!-- Comments -->
+							<div class="panel panel-flat">
+								<div class="panel-heading">
+									<h5 class="panel-title text-semiold"><i class="icon-bubbles4 position-left"></i> コメント</h5>
+								</div>
+
+								<div class="panel-body">
+									<ul class="media-list content-group-lg stack-media-on-mobile">
+
+										<legend class="text-bold">受注申請</legend>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+											</div>
+
+											<div class="media-body">
+												<div class="media-heading">
+													<a href="#" class="text-semibold">企業1</a>
+													<span class="media-annotation dotted">たった今</span>
+												</div>
+
+												<p>納品日：12/20　部屋数：3部屋　代金：9万円<br>畳表：中国産ランク2　畳縁：ラベル2</p>
+
+												<ul class="list-inline list-inline-separate text-size-small">
+													<li><a href="#">契約する</a></li>
+													<li><a href="#">拒否する</a></li>
+												</ul>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+											</div>
+
+											<div class="media-body">
+												<div class="media-heading">
+													<a href="#" class="text-semibold">企業2</a>
+													<span class="media-annotation dotted">たった今</span>
+												</div>
+
+												<p>納品日：12/20　部屋数：3部屋　代金：9万円<br>畳表：中国産ランク2　畳縁：ラベル2</p>
+
+												<ul class="list-inline list-inline-separate text-size-small">
+													<li><a href="#">契約する</a></li>
+													<li><a href="#">拒否する</a></li>
+												</ul>
+											</div>
+										</li>
+
+										<legend class="text-bold">依頼元から</legend>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+											</div>
+
+											<div class="media-body">
+												<div class="media-heading">
+													<a href="#" class="text-semibold">(有)八巻畳工業</a>
+													<span class="media-annotation dotted">5分前</span>
+												</div>
+
+												<p>たった今、案件の詳細を更新しましたので、ご確認ください。変更点は以下の通りです。<br><br>変更前→畳縁：自由<br>変更後→畳縁：標準的なものなら自由</p>
+											</div>
+										</li>
+
+										<legend class="text-bold">コメント</legend>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+											</div>
+
+											<div class="media-body">
+												<div class="media-heading">
+													<a href="#" class="text-semibold">企業3</a>
+													<span class="media-annotation dotted">5分前</span>
+												</div>
+
+												<p>これはこの案件に対して、依頼先と依頼元が自由に投稿したコメントの本文です。</p>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+											</div>
+
+											<div class="media-body">
+												<div class="media-heading">
+													<a href="#" class="text-semibold">企業3</a>
+													<span class="media-annotation dotted">5分前</span>
+												</div>
+
+												<p>これはこの案件に対して、依頼先と依頼元が自由に投稿したコメントの本文です。</p>
+											</div>
+										</li>
+
+										<li class="media">
+											<div class="media-left">
+												<a href="#"><img src="assets/images/placeholder.jpg" class="img-circle img-sm" alt=""></a>
+											</div>
+
+											<div class="media-body">
+												<div class="media-heading">
+													<a href="#" class="text-semibold">企業3</a>
+													<span class="media-annotation dotted">5分前</span>
+												</div>
+
+												<p>これはこの案件に対して、依頼先と依頼元が自由に投稿したコメントの本文です。</p>
+											</div>
+										</li>
+									</ul>
+
+									<h6 class="text-semibold"><i class="icon-pencil7 position-left"></i> コメントを書く</h6>
+									<div class="content-group">
+										<div class="col-lg-4">
+											<div class="form-group">
+												<select name="select" class="form-control input-xlg">
+	                        <option value="opt1">依頼元から(依頼元のみ)</option>
+	                        <option value="opt2">コメント(依頼先のみ)</option>
+	                        <option value="opt3">受注申請(依頼先のみ)</option>
+		                    </select>
+											</div>
+										</div>
+										<div class="col-lg-12">
+											<textarea rows="5" cols="5" class="form-control" placeholder="ここにコメントを記入してください"></textarea>
+										</div>
+									</div>
+									<div class="text-right">
+										<button type="button" class="btn bg-blue"><i class="icon-plus22"></i> 投稿する</button>
+									</div>
+								</div>
+							</div>
+							<!-- /comments -->
+						</div>
+					</div>
+					<!-- /detailed task -->
+
+					<!-- Horizontal form modal -->
+					<div id="modal_form_horizontal" class="modal fade">
+						<div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h5 class="modal-title">案件編集</h5>
+								</div>
+
+								<form class="form-horizontal" action="#">
+									<div class="modal-body">
+										<div class="row">
+											<div class="col-md-6">
+												<fieldset>
+													<div class="form-group">
+														<label class="col-lg-3 control-label">依頼元企業:</label>
+														<div class="col-lg-9">
+															<input type="text" class="form-control" placeholder="(有)八巻畳工業" disabled="true">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">依頼先企業:</label>
+														<div class="col-lg-9">
+															<input type="text" class="form-control" value="" disabled="true">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">ステータス:</label>
+														<div class="col-lg-9">
+															<select data-placeholder="Select your state" class="select" select2="false">
+																<option value="public">公開</option>
+																<option value="private">非公開</option>
+															</select>
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">案件名:</label>
+														<div class="col-lg-9">
+															<input type="text" class="form-control" value="団地の畳表替え">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">案件詳細:</label>
+														<div class="col-lg-9">
+															<textarea rows="10" cols="5" class="form-control" value="詳細"></textarea>
+														</div>
+													</div>
+												</fieldset>
+											</div>
+
+											<div class="col-md-6">
+												<fieldset>
+													<div class="form-group">
+														<label class="col-lg-3 control-label">畳表:</label>
+														<div class="col-lg-9">
+															<input type="text" class="form-control" value="中国産ランク4">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">畳縁:</label>
+														<div class="col-lg-9">
+															<input type="text" class="form-control" value="標準的なものなら自由">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">必要数量(畳):</label>
+														<div class="col-lg-9">
+															<input type="text" class="form-control" value="30">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">見積額<br>(円/1畳):</label>
+														<div class="col-lg-9">
+															<input type="text" class="form-control" value="3,000">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="col-lg-3 control-label">備考:</label>
+														<div class="col-lg-9">
+															<textarea rows="10" cols="5" class="form-control" value="備考"></textarea>
+														</div>
+													</div>
+												</fieldset>
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-link" data-dismiss="modal">閉じる</button>
+											<button type="submit" class="btn btn-primary">保存する</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+					<!-- /horizontal form modal -->
+
+		      <!-- Mini modal -->
+					<div id="modal_mini" class="modal fade">
+						<div class="modal-dialog modal-xs">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h6 class="modal-title">本当にこの案件を削除しますか？</h6>
+								</div>
+								<h5></h5>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary">削除</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /mini modal -->
+
+					<!-- Footer -->
+					<div class="footer text-muted">
+						&copy; 2015. <a href="#">imaTat</a> by <a href="http://themeforest.net/user/Kopyov" target="_blank">Kohki OBATA</a>
+					</div>
+					<!-- /footer -->
+
+				</div>
+				<!-- /content area -->
+
+			</div>
+			<!-- /main content -->
+
+		</div>
+		<!-- /page content -->
+
+	</div>
+	<!-- /page container -->
+
+</body>
+</html>
